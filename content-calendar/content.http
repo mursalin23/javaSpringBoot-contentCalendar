@@ -1,0 +1,39 @@
+### GET all contents
+GET http://localhost:8080/api/content
+
+### GET by individual id
+GET http://localhost:8080/api/content/1
+
+###
+POST http://localhost:8080/api/content
+Content-Type: application/json
+
+{
+  "id": 2,
+  "title": "The Second Post",
+  "desc": "Awesome",
+  "status": "IDEA",
+  "contentType": "ARTICLE",
+  "dateCreated": "2023-05-21T23:47:51.742944725",
+  "dateUpdated": null,
+  "url": ""
+}
+
+### UPDATE existing Content
+PUT http://localhost:8080/api/content/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "title": "The very first post",
+  "desc": "It's gonna a good read",
+  "status": "IDEA",
+  "contentType": "ARTICLE",
+  "dateCreated": "2023-05-21T23:47:51.742944725",
+  "dateUpdated": "2023-05-21T23:47:51.742944725",
+  "url": "hppt://localhost:8080/my-first-post"
+}
+
+
+### delete by id
+DELETE http://localhost:8080/api/content/2
