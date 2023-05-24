@@ -2,6 +2,7 @@ package com.mursalin.contentcalendar.controller;
 
 import com.mursalin.contentcalendar.model.Content;
 import com.mursalin.contentcalendar.repository.ContentCollectionRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/content")
+@CrossOrigin
 public class ContentController {
     private final ContentCollectionRepository repository;
 
@@ -31,7 +33,8 @@ public class ContentController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    public void create(@RequestBody Content content) {
+    public void create(@Valid @RequestBody Content content) {
+
         repository.save(content);
     }
 
