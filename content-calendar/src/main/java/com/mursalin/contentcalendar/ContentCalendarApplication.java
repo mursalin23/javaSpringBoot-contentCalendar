@@ -1,7 +1,15 @@
 package com.mursalin.contentcalendar;
 
+import com.mursalin.contentcalendar.model.Content;
+import com.mursalin.contentcalendar.model.Status;
+import com.mursalin.contentcalendar.model.Type;
+import com.mursalin.contentcalendar.repository.ContentRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import java.time.LocalDateTime;
 
 @SpringBootApplication
 public class ContentCalendarApplication {
@@ -10,6 +18,23 @@ public class ContentCalendarApplication {
 
 		SpringApplication.run(ContentCalendarApplication.class, args);
 
+	}
+
+	@Bean
+	CommandLineRunner commandLineRunner(ContentRepository repository) {
+		return args -> {
+			System.out.println("Bootstrapping Database Repository using CommandLineRunner@Bean");
+
+			Content content = new Content(null,
+					"Bootstrapping by CommandLineRunner",
+					"Inserting content into Repository using CommandLineRunner Bootstrapping",
+					Status.IN_PROGRESS,
+					Type.ARTICLE,
+					LocalDateTime.now(),
+					null,
+					"");
+			repository.save(content);
+		};
 	}
 
 }
